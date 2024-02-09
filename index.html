@@ -23,8 +23,9 @@
     async function submit1() {
         const a = document.getElementById("fno").value;
         const b = document.getElementById("sno").value;
-
-        const response = await fetch("http://localhost:3000/add/" + a + "/" + b)
+        let n = a.value;
+        let m = b.value;
+        const response = await fetch("http://arithmetic-service-adityapadgal.onrender.com//add/" + n + "/" + m);
         const sum = await response.json();
 
         document.getElementById("answer").innerHTML =  sum;
