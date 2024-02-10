@@ -21,8 +21,8 @@
 
   <script type="text/javascript">
     async function submit1() {
-        const a = document.getElementById("fno").value;
-        const b = document.getElementById("sno").value;
+        const a = document.getElementById("fno");
+        const b = document.getElementById("sno");
         let n = a.value;
         let m = b.value;
         const response = await fetch("https://arithmetic-service-adityapadgal.onrender.com/add/" + n + "/" + m);
