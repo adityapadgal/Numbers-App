@@ -4,32 +4,56 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Addition</title>
+  <style>
+    .column {
+       float: left;
+       width: 50%;
+       padding: 10px;
+       box-sizing: border-box;
+      
+    }
+    .row::after {
+       content: "";
+       clear: both;
+       display: table;
+    }
+ </style>
 </head>
 <body>
+  <div class="row">
+    <div class="column">
+      <form onsubmit="submit1(); return false;">
+        <h1>Arithmetic Service Addition</h1>
+        <label for="fno"></label>
+        <input type="number" id="fno" name="fname">
+        <label>+</label>
+        <label for="sno"></label>
+        <input type="number" id="sno" name="lname">
+        <button type="submit">=</button>
+        <label for="answer" id="answer"></label>
+      </form>
 
-  <form onsubmit="submit1(); return false;">
-    <h1>Arithmetic Service Addition</h1>
-    <label for="fno"></label>
-    <input type="number" id="fno" name="fname">
-    <label>+</label>
-    <label for="sno"></label>
-    <input type="number" id="sno" name="lname">
-    <button type="submit">=</button>
-    
-    <label for="answer" id="answer"></label>
-  </form>
-
-  <form onsubmit="submit2(); return false;">
-    <h1>Arithmetic Service Substraction</h1>
-    <label for="fno_sub"></label>
-    <input type="number" id="fno_sub" name="fname">
-    <label>-</label>
-    <label for="sno_sub"></label>
-    <input type="number" id="sno_sub" name="lname">
-    <button type="submit">=</button>
-    
-    <label id="answer_sub"></label>
-  </form>
+      <form onsubmit="submit2(); return false;">
+        <h1>Arithmetic Service Substraction</h1>
+        <label for="fno_sub"></label>
+        <input type="number" id="fno_sub" name="fname">
+        <label>-</label>
+        <label for="sno_sub"></label>
+        <input type="number" id="sno_sub" name="lname">
+        <button type="submit">=</button>
+        <label id="answer_sub"></label>
+      </form>
+    </div>
+    <div class="column">
+      <section>
+          <h2>Prime Check</h2>
+          <label>Number to test:</label>
+          <input id="numberToTest"/>
+          <button onclick="isPrime()">Check</button>
+          <label id="primeCheckResult"></label>
+      </section>
+    </div>
+  </div>
 
   <script type="text/javascript">
     async function submit1() {
@@ -52,6 +76,14 @@
         const sum = await response.json();
         console.log(sum);
         document.getElementById("answer_sub").innerHTML =  sum;
+    }
+
+    async function isPrime() {
+        const numberToTest = document.getElementById("numberToTest");            
+        let n = numberToTest.value;            
+        const response = await fetch("https://primes-service-adityapadgal.onrender.com/primes/" + n);
+        const result = await response.json();
+        document.getElementById("primeCheckResult").innerText = result;
     }
   </script>
 
